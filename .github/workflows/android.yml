@@ -31,7 +31,7 @@ jobs:
       - name: Create Flutter project if missing
         run: |
           if [ ! -f pubspec.yaml ]; then
-            flutter create --org com.debremarkos.ride .
+            flutter create --project-name debremarkosride --org com.debremarkos.ride .
           fi
 
       - name: Build Android APK
