@@ -34,6 +34,17 @@ jobs:
             flutter create --project-name debremarkosride --org com.debremarkos.ride .
           fi
 
+      - name: Configure map and location dependencies
+        run: |
+          flutter pub add flutter_map
+          flutter pub add latlong2
+          flutter pub add geolocator
+
+      - name: Configure Android location permissions
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          sed -i '/<application/i\\    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />' "$MANIFEST"
+
       - name: Build Android APK
         run: |
           flutter pub get
