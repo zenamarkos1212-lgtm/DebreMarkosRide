@@ -43,6 +43,7 @@ jobs:
       - name: Configure Android location permissions
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
+          sed -i '/<application/i\    <uses-permission android:name="android.permission.INTERNET" />' "$MANIFEST"
           sed -i '/<application/i\\    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />' "$MANIFEST"
 
       - name: Build Android APK
